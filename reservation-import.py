@@ -17,9 +17,12 @@ cursor = connection.cursor()
 filename = input("Enter filename: ")
 reservation_df = pd.read_csv(filename + ".csv", sep=',', skiprows=1, 
                              index_col=False, encoding='windows-1252', 
-                             dtype={"Booking No": str, "OTA NO": str, "Trx Amount": float},
+                             dtype={"Booking No": str, "OTA NO": str},
                              parse_dates=["Reservation Date", "Arrival Date", 
                             "Departure Date"], dayfirst=True)
+
+# Remove all ',' from Trx Amount
+reservation_df["Trx Amount"] = reservation_df["Trx Amount"].str.replace(',','')
 
 def insert_booking_data(reservation_df):
     """Insert booking data for csv into database"""
