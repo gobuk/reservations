@@ -17,7 +17,7 @@ cursor = connection.cursor()
 filename = input("Enter filename: ")
 reservation_df = pd.read_csv(filename + ".csv", sep=',', skiprows=1, 
                              index_col=False, encoding='windows-1252', 
-                             dtype={"Booking No": str, "OTA NO": str},
+                             dtype={"Booking No": str, "OTA NO": str, "Trx Amount": str},
                              parse_dates=["Reservation Date", "Arrival Date", 
                             "Departure Date"], dayfirst=True)
 
